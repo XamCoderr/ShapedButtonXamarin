@@ -7,13 +7,13 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace Minglenerds.iOS
+namespace ShapeButtonXamarin
 {
 	[Register ("ShapedButton")]
 	partial class ShapedButton
 	{
-		
-		void ReleaseDesignerOutlets ()
+
+		void ReleaseDesignerOutlets()
 		{
 		}
 	}

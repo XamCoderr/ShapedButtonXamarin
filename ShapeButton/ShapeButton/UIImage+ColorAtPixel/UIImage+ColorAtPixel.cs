@@ -2,19 +2,20 @@
 using CoreGraphics;
 using UIKit;
 
-namespace ShapedButtonDemo
+namespace ShapeButtonXamarin
 {
 	public class UIImage_ColorAtPixel
 	{
-		public UIImage_ColorAtPixel ()
+		public UIImage_ColorAtPixel()
 		{
 		}
 
-		public static UIColor ColorAtPixel (CGPoint point, UIImage image)
+		public static UIColor ColorAtPixel(CGPoint point, UIImage image)
 		{
 			CGRect rect = new CGRect (0, 0, image.Size.Width, image.Size.Height);
 			// CancelIf pointIs outside Image coordinates
-			if (!rect.Contains (point)) {
+			if (!rect.Contains (point))
+			{
 				return null;
 			}
 
@@ -29,16 +30,16 @@ namespace ShapedButtonDemo
 			int bytesPerPixel = 4;
 			int bytesPerRow = bytesPerPixel * 1;
 			int bitsPerComponent = 8;
-			byte[] pixelData = { 0, 0, 0, 0 };
-			CGContext context = new CGBitmapContext (pixelData, 
-				                    1,
-				                    1,
-				                    bitsPerComponent, 
-				                    bytesPerRow, 
-				                    colorSpace,
-				                    CGImageAlphaInfo.PremultipliedLast /*| CGBitmapFlags.ByteOrder32Big*/);
-			
-//			colorSpace.Dispose ();
+			byte [] pixelData = { 0, 0, 0, 0 };
+			CGContext context = new CGBitmapContext (pixelData,
+									1,
+									1,
+									bitsPerComponent,
+									bytesPerRow,
+									colorSpace,
+									CGImageAlphaInfo.PremultipliedLast /*| CGBitmapFlags.ByteOrder32Big*/);
+
+			//			colorSpace.Dispose ();
 			context.SetFillColorSpace (colorSpace); //    CGColorSpaceRelease(colorSpace); //TODO Not Sure
 			context.SetBlendMode (CGBlendMode.Copy);
 
@@ -46,7 +47,7 @@ namespace ShapedButtonDemo
 			context.TranslateCTM (-pointX, pointY - (nfloat)height);
 			context.DrawImage (new CGRect (0.0f, 0.0f, (nfloat)width, (nfloat)height), image.CGImage);
 			context.Dispose ();  // CGContextRelease(context); //TODO Not Sure
-		
+
 			// Convert color values [0..255] to floats [0.0..1.0]
 			nfloat red = (nfloat)pixelData [0] / 255.0f;
 			nfloat green = (nfloat)pixelData [1] / 255.0f;

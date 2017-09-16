@@ -5,9 +5,8 @@ using System;
 using Foundation;
 using UIKit;
 using CoreGraphics;
-using ShapedButtonDemo;
 
-namespace Minglenerds.iOS
+namespace ShapeButtonXamarin
 {
 	public partial class ShapedButton : UIButton
 	{
@@ -18,25 +17,26 @@ namespace Minglenerds.iOS
 		UIImage buttonImage;
 		UIImage buttonBackground;
 
-		public ShapedButton (IntPtr handle) : base (handle)
+		public ShapedButton(IntPtr handle) : base (handle)
 		{
 
 
 		}
 
-		public ShapedButton (CGRect frame) : base (frame)
+		public ShapedButton(CGRect frame) : base (frame)
 		{
-			if (this != null) {
+			if (this != null)
+			{
 				SetUp ();
 			}
 		}
 
-		public override void AwakeFromNib ()
+		public override void AwakeFromNib()
 		{
 			SetUp ();
 		}
 
-		void SetUp ()
+		void SetUp()
 		{
 			UpdateImageCacheForCurrentState ();
 			ResetHitTestCache ();
@@ -51,7 +51,7 @@ namespace Minglenerds.iOS
 		/// <returns><c>true</c> if this instance is alpha visible at point the specified point image; otherwise, <c>false</c>.</returns>
 		/// <param name="point">atPoint</param>
 		/// <param name="image">forImage</param>
-		bool IsAlphaVisibleAtPoint (CGPoint point, UIImage image)
+		bool IsAlphaVisibleAtPoint(CGPoint point, UIImage image)
 		{
 			// Correct point to take into account that the image does not have to be the same size
 			// as the button. See https://github.com/ole/ShapedButton/issues/1
@@ -87,11 +87,14 @@ namespace Minglenerds.iOS
 		// of the view hierarchy is ignored.
 
 
-		public override UIView HitTest (CGPoint point, UIEvent uievent)
+		public override UIView HitTest(CGPoint point, UIEvent uievent)
 		{
-			if (!PointInside (point, uievent)) {
+			if (!PointInside (point, uievent))
+			{
 				return null;
-			} else {
+			}
+			else
+			{
 				return base.HitTest (point, uievent);
 			}
 		}
@@ -104,34 +107,48 @@ namespace Minglenerds.iOS
 		/// <returns><c>true</c>, if inside was pointed, <c>false</c> otherwise.</returns>
 		/// <param name="point">Point.</param>
 		/// <param name="_event">With Event</param>
-		bool PointInside (CGPoint point, UIEvent _event)
+		bool PointInside(CGPoint point, UIEvent _event)
 		{
 			// Return NO if even super returns NO (i.e., if point lies outside our bounds)
 			bool superResult = base.PointInside (point, _event);
-			if (!superResult) {
+			if (!superResult)
+			{
 				return superResult;
 			}
 
 			// Don't check again if we just queried the same point
 			// (because pointInside:withEvent: gets often called multiple times)
-			if (point.Equals (previousTouchPoint)) {
+			if (point.Equals (previousTouchPoint))
+			{
 				return previousTouchHitTestResponse;
-			} else {
+			}
+			else
+			{
 				previousTouchPoint = point;
 			}
 
 			bool response = false;
 
-			if (buttonImage == null && buttonBackground == null) {
+			if (buttonImage == null && buttonBackground == null)
+			{
 				response = true;
-			} else if (buttonImage != null && buttonBackground == null) {
+			}
+			else if (buttonImage != null && buttonBackground == null)
+			{
 				response = IsAlphaVisibleAtPoint (point, buttonImage);
-			} else if (buttonImage == null && buttonBackground != null) {
+			}
+			else if (buttonImage == null && buttonBackground != null)
+			{
 				response = IsAlphaVisibleAtPoint (point, buttonBackground);
-			} else {
-				if (IsAlphaVisibleAtPoint (point, buttonImage)) {
+			}
+			else
+			{
+				if (IsAlphaVisibleAtPoint (point, buttonImage))
+				{
 					response = true;
-				} else {
+				}
+				else
+				{
 					response = IsAlphaVisibleAtPoint (point, buttonBackground);
 				}
 			}
@@ -144,45 +161,52 @@ namespace Minglenerds.iOS
 
 
 		// Reset the Hit Test Cache when a new image is assigned to the button
-		void SetImage (UIImage image, UIControlState forState)
+		void SetImage(UIImage image, UIControlState forState)
 		{
 			base.SetImage (image, forState);
 			UpdateImageCacheForCurrentState ();
 			ResetHitTestCache ();
 		}
 
-		void SetBackgroundImage (UIImage image, UIControlState forState)
+		void SetBackgroundImage(UIImage image, UIControlState forState)
 		{
 			base.SetBackgroundImage (image, forState);
 			UpdateImageCacheForCurrentState ();
 			ResetHitTestCache ();
 		}
 
-		public bool Enabled {
+		public bool Enabled
+		{
 			get { return base.Enabled; }
-			set {
+			set
+			{
 				base.Enabled = value;
 				UpdateImageCacheForCurrentState ();
 			}
 		}
 
-		public bool Highlighted {
-			get {
+		public bool Highlighted
+		{
+			get
+			{
 				return base.Highlighted;
 			}
 
 
-			set {
+			set
+			{
 				base.Highlighted = value;
 				UpdateImageCacheForCurrentState ();
 			}
 		}
 
 #pragma warning disable CS0114 // Member hides inherited member; missing override keyword
-		public bool Selected {
+		public bool Selected
+		{
 #pragma warning restore CS0114 // Member hides inherited member; missing override keyword
 			get { return base.Selected; }
-			set {
+			set
+			{
 				base.Selected = value;
 				UpdateImageCacheForCurrentState ();
 			}
@@ -190,13 +214,13 @@ namespace Minglenerds.iOS
 
 		#region HelperMethods
 
-		void UpdateImageCacheForCurrentState ()
+		void UpdateImageCacheForCurrentState()
 		{
 			buttonBackground = (UIImage)this.CurrentBackgroundImage;
 			buttonImage = (UIImage)this.CurrentImage;
 		}
 
-		void ResetHitTestCache ()
+		void ResetHitTestCache()
 		{
 			this.previousTouchPoint = new CGPoint (nfloat.MinValue, nfloat.MinValue);
 			this.previousTouchHitTestResponse = false;
