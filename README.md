@@ -20,7 +20,7 @@ ShapedButton is a subclass of UIButton transformed for non-rectangular button sh
   That's it! Your button will now only respond to touches where the PNG image for the normal
   control state is non-transparent.
 
-# Inspired from ObjectiveC Library https://github.com/ole/OBShapedButton
+Inspired from ObjectiveC Library https://github.com/ole/OBShapedButton
 
 
 ## Compatibility
