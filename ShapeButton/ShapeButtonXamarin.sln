@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeButtonXamarin", "ShapeButton\ShapeButtonXamarin.csproj", "{1D88F4C9-1F09-46FD-8AF1-AA994D4260DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D88F4C9-1F09-46FD-8AF1-AA994D4260DA}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{1D88F4C9-1F09-46FD-8AF1-AA994D4260DA}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{1D88F4C9-1F09-46FD-8AF1-AA994D4260DA}.Release|iPhone.ActiveCfg = Release|iPhone
+		{1D88F4C9-1F09-46FD-8AF1-AA994D4260DA}.Release|iPhone.Build.0 = Release|iPhone
+		{1D88F4C9-1F09-46FD-8AF1-AA994D4260DA}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{1D88F4C9-1F09-46FD-8AF1-AA994D4260DA}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{1D88F4C9-1F09-46FD-8AF1-AA994D4260DA}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{1D88F4C9-1F09-46FD-8AF1-AA994D4260DA}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
